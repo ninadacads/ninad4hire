@@ -116,22 +116,69 @@ const Experience = () => {
   const experiences = [
     {
       role: "Broadcasting Manager",
-      company: "Fluidscapes Consultants",
+      company: "Fluidscapes Consultants, Mumbai",
       period: "March 2024 - Present",
       achievements: [
-        "Zero critical on-air failures across 10,000+ hours of live events",
-        "Implemented automated monitoring systems reducing fault detection time by 60%",
-        "Established backup transmission protocols minimizing potential downtime"
+        "Execute daily transmission operations maintaining 99.9% uptime across multiple simultaneous live streams",
+        "Design and implement broadcast infrastructure following industry-standard workflows",
+        "Zero critical on-air failures across 10,000 hours of live events"
       ]
     },
     {
-      role: "Manager - Broadcast Partnerships",
-      company: "Trifecta",
-      period: "May 2022 - Feb 2024",
+      role: "Manager - Broadcast Partnerships & Strategy",
+      company: "Trifecta, Chennai",
+      period: "May 2022 - February 2024",
       achievements: [
-        "Managed 10-15 concurrent live streams with global distribution",
-        "Achieved 40% latency reduction through NDI/12G-SDI hybrid infrastructure",
-        "Zero on-air errors across multi-venue live events"
+        "Led transmission operations for multi-title live championships (GGNation Challenger Series, Campus Showdown)",
+        "Managed simultaneous monitoring and quality control of 10-15 concurrent streams across OTT platforms",
+        "Achieved 40% latency reduction through NDI/12G-SDI hybrid infrastructure optimization"
+      ]
+    },
+    {
+      role: "Project Manager",
+      company: "GGNation, Chennai",
+      period: "March 2021 - April 2022",
+      achievements: [
+        "Managed live operations for GG1 Weekend Wars 9-day continuous live tournament",
+        "Coordinated College Esports Championship with 10,000 registrations across 500 colleges",
+        "Built India's largest collegiate esports network with 250 partnerships"
+      ]
+    },
+    {
+      role: "Manager - Esports Broadcast",
+      company: "Immortals India Gaming, Mumbai",
+      period: "September 2018 - February 2021",
+      achievements: [
+        "Owned end-to-end live transmission operations delivering 15,000 broadcast hours",
+        "Managed monitoring of 8-12 live competition streams during major events (PUBG Mobile Campus Championship)",
+        "Zero critical on-air failures across 250,000 viewer-hours"
+      ]
+    },
+    {
+      role: "Assistant Production Manager",
+      company: "Chennai",
+      period: "February 2018 - September 2018",
+      achievements: [
+        "Designed live broadcast workflows for ISRL school esports and ESPL multi-city league",
+        "Developed technical specifications for distributed live production facilities"
+      ]
+    },
+    {
+      role: "Manager - League Operations & Post Production",
+      company: "MTV Ucypher, Mumbai",
+      period: "September 2017 - February 2018",
+      achievements: [
+        "Managed live-to-tape operations for 35 episodes reaching 10.7M viewers",
+        "Successfully launched India's first televised esports series with zero broadcast delays"
+      ]
+    },
+    {
+      role: "Manager - League Operations & Broadcast",
+      company: "Indian Esports Championship (IESC), Mumbai",
+      period: "August 2016 - June 2017",
+      achievements: [
+        "Pioneered India's first major esports championship broadcast reaching 1.2M concurrent viewers",
+        "Established live transmission protocols and quality control procedures used industry-wide"
       ]
     }
   ];
@@ -144,9 +191,12 @@ const Experience = () => {
       <div className="experience-list">
         {experiences.map((exp, i) => (
           <div key={i} className="experience-card">
-            <h3>{exp.role} @ {exp.company}</h3>
-            <span className="period">{exp.period}</span>
-            <ul>
+            <div className="exp-header">
+              <h3>{exp.role}</h3>
+              <span className="company">{exp.company}</span>
+              <span className="period">{exp.period}</span>
+            </div>
+            <ul className="achievements">
               {exp.achievements.map((a, j) => <li key={j}>{a}</li>)}
             </ul>
           </div>
