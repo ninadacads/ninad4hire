@@ -25,32 +25,11 @@ const Hero = () => {
       easing: 'easeOutExpo',
       duration: 1000
     });
-
     timeline
-      .add({
-        targets: '.hero-tag',
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 800
-      })
-      .add({
-        targets: '.hero-title',
-        opacity: [0, 1],
-        translateY: [50, 0],
-        duration: 1200
-      }, '-=600')
-      .add({
-        targets: '.hero-subtitle',
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 1000
-      }, '-=800')
-      .add({
-        targets: '.hero-description',
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 1000
-      }, '-=700');
+      .add({ targets: '.hero-tag', opacity: [0, 1], translateY: [30, 0], duration: 800 })
+      .add({ targets: '.hero-title', opacity: [0, 1], translateY: [50, 0], duration: 1200 }, '-=600')
+      .add({ targets: '.hero-subtitle', opacity: [0, 1], translateY: [30, 0], duration: 1000 }, '-=800')
+      .add({ targets: '.hero-description', opacity: [0, 1], translateY: [30, 0], duration: 1000 }, '-=700');
   }, []);
 
   return (
@@ -63,7 +42,7 @@ const Hero = () => {
         <h1 className="hero-title">High-Stakes Live Sports & Esports Broadcasting</h1>
         <p className="hero-subtitle">Transmission Operations Specialist | MCR Expert</p>
         <p className="hero-description">
-          10 years experience delivering 25,000+ broadcast hours with 99.9% uptime. 
+          10 years experience delivering 25,000+ broadcast hours with 99.9% uptime.
           Managed 10-30 simultaneous live streams and executed flawless delivery to 1.2M concurrent viewers globally.
         </p>
         <div className="cta-buttons">
@@ -78,23 +57,10 @@ const Hero = () => {
 // Services Component
 const Services = () => {
   const services = [
-    {
-      title: "Live Transmission & MCR",
-      description: "Executing daily transmission operations with 99.9% uptime. Managing 10-30 simultaneous live streams across OTT platforms.",
-      icon: "📡"
-    },
-    {
-      title: "Broadcast Infrastructure",
-      description: "Designing NDI/SDI/12G-SDI hybrid workflows and SMPTE-standard signal routing for multi-venue live events.",
-      icon: "🏗️"
-    },
-    {
-      title: "Quality Assurance",
-      description: "Real-time monitoring of bitrate, audio sync, and video integrity using CloudWatch, Grafana, and Prometheus.",
-      icon: "🛡️"
-    }
+    { title: "Live Transmission & MCR", description: "Executing daily transmission operations with 99.9% uptime. Managing 10-30 simultaneous live streams across OTT platforms.", icon: "📡" },
+    { title: "Broadcast Infrastructure", description: "Designing NDI/SDI/12G-SDI hybrid workflows and SMPTE-standard signal routing for multi-venue live events.", icon: "🏗️" },
+    { title: "Quality Assurance", description: "Real-time monitoring of bitrate, audio sync, and video integrity using CloudWatch, Grafana, and Prometheus.", icon: "🛡️" }
   ];
-
   return (
     <section id="services">
       <div className="section-header">
@@ -113,15 +79,40 @@ const Services = () => {
   );
 };
 
-// Experience Component - NEW Display Cards Implementation
+// ImageCards Component - 3 blank stacked cards per experience entry
+const ImageCards = () => {
+  return (
+    <div className="image-cards-grid">
+      <div className="image-card img-card-1 img-stacked">
+        <div className="image-card-inner">
+          <div className="image-card-icon">➕</div>
+          <span className="image-card-label">Image Placeholder</span>
+        </div>
+      </div>
+      <div className="image-card img-card-2 img-stacked">
+        <div className="image-card-inner">
+          <div className="image-card-icon">➕</div>
+          <span className="image-card-label">Image Placeholder</span>
+        </div>
+      </div>
+      <div className="image-card img-card-3 img-stacked">
+        <div className="image-card-inner">
+          <div className="image-card-icon">➕</div>
+          <span className="image-card-label">Image Placeholder</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Experience Component
+// Layout: experience list LEFT | 3 blank image cards RIGHT (per entry)
 const Experience = () => {
   const experiences = [
     {
       role: "Broadcasting Manager",
-      company: "Fluidscapes Consultants",
+      company: "Fluidscapes Consultants, Mumbai",
       period: "March 2024 - Present",
-      summary: "99.9% uptime across 10,000+ live hours.",
-      icon: "📡",
       achievements: [
         "Execute daily transmission operations maintaining 99.9% uptime across multiple simultaneous live streams",
         "Design and implement broadcast infrastructure following industry-standard workflows",
@@ -129,14 +120,12 @@ const Experience = () => {
       ]
     },
     {
-      role: "Manager - Broadcast Partnerships",
+      role: "Manager - Broadcast Partnerships & Strategy",
       company: "Trifecta, Chennai",
-      period: "May 2022 - Feb 2024",
-      summary: "40% latency reduction via hybrid NDI workflows.",
-      icon: "⚡",
+      period: "May 2022 - February 2024",
       achievements: [
-        "Led transmission operations for multi-title live championships (GGNation Challenger Series)",
-        "Managed simultaneous monitoring and quality control of 10-15 concurrent streams",
+        "Led transmission operations for multi-title live championships (GGNation Challenger Series, Campus Showdown)",
+        "Managed simultaneous monitoring and quality control of 10-15 concurrent streams across OTT platforms",
         "Achieved 40% latency reduction through NDI/12G-SDI hybrid infrastructure optimization"
       ]
     },
@@ -144,8 +133,6 @@ const Experience = () => {
       role: "Project Manager",
       company: "GGNation, Chennai",
       period: "March 2021 - April 2022",
-      summary: "India's largest collegiate esports network.",
-      icon: "🎮",
       achievements: [
         "Managed live operations for GG1 Weekend Wars 9-day continuous live tournament",
         "Coordinated College Esports Championship with 10,000 registrations across 500 colleges",
@@ -153,23 +140,41 @@ const Experience = () => {
       ]
     },
     {
-        role: "Manager - Esports Broadcast",
-        company: "Immortals India Gaming",
-        period: "Sept 2018 - Feb 2021",
-        achievements: [
-          "Owned end-to-end live transmission operations delivering 15,000 broadcast hours",
-          "Managed monitoring of 8-12 live competition streams during major events",
-          "Zero critical on-air failures across 250,000 viewer-hours"
-        ]
+      role: "Manager - Esports Broadcast",
+      company: "Immortals India Gaming, Mumbai",
+      period: "September 2018 - February 2021",
+      achievements: [
+        "Owned end-to-end live transmission operations delivering 15,000 broadcast hours",
+        "Managed monitoring of 8-12 live competition streams during major events (PUBG Mobile Campus Championship)",
+        "Zero critical on-air failures across 250,000 viewer-hours"
+      ]
     },
     {
-        role: "Manager - League Ops",
-        company: "MTV Ucypher",
-        period: "Sept 2017 - Feb 2018",
-        achievements: [
-          "Managed live-to-tape operations for 35 episodes reaching 10.7M viewers",
-          "Successfully launched India's first televised esports series with zero delays"
-        ]
+      role: "Assistant Production Manager",
+      company: "Chennai",
+      period: "February 2018 - September 2018",
+      achievements: [
+        "Designed live broadcast workflows for ISRL school esports and ESPL multi-city league",
+        "Developed technical specifications for distributed live production facilities"
+      ]
+    },
+    {
+      role: "Manager - League Operations & Post Production",
+      company: "MTV Ucypher, Mumbai",
+      period: "September 2017 - February 2018",
+      achievements: [
+        "Managed live-to-tape operations for 35 episodes reaching 10.7M viewers",
+        "Successfully launched India's first televised esports series with zero broadcast delays"
+      ]
+    },
+    {
+      role: "Manager - League Operations & Broadcast",
+      company: "Indian Esports Championship (IESC), Mumbai",
+      period: "August 2016 - June 2017",
+      achievements: [
+        "Pioneered India's first major esports championship broadcast reaching 1.2M concurrent viewers",
+        "Established live transmission protocols and quality control procedures used industry-wide"
+      ]
     }
   ];
 
@@ -180,47 +185,32 @@ const Experience = () => {
         <p className="section-subtitle">A decade of excellence in high-stakes live broadcasting</p>
       </div>
 
-      <div className="experience-layout">
-        {/* Left: Stacking Display Cards (Top 3 Roles) */}
-        <div className="display-cards-grid">
-          {experiences.slice(0, 3).map((exp, i) => (
-            <div 
-              key={i} 
-              className={`display-card card-${i + 1} stacked`}
-            >
-              <div className="display-card-content">
-                <div className="display-card-header">
-                  <div className="display-card-icon">{exp.icon}</div>
-                  <h3 className="display-card-title">{exp.company}</h3>
-                </div>
-                <p className="display-card-role">{exp.role}</p>
-                <p className="display-card-description">{exp.summary}</p>
-                <div className="display-card-date">{exp.period}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {experiences.map((exp, i) => (
+        <div key={i} className="experience-layout" style={{marginBottom: '48px'}}>
 
-        {/* Right: Detailed List (All Roles) */}
-        <div className="experience-list">
-          {experiences.map((exp, i) => (
-            <div key={i} className="experience-item">
-              <div className="experience-item-header">
-                <h3 className="experience-item-role">{exp.role}</h3>
-                <div className="experience-item-meta">
-                  <span className="experience-item-company">{exp.company}</span>
-                  <span className="experience-item-period">{exp.period}</span>
-                </div>
+          {/* LEFT: Experience detail card */}
+          <div className="experience-item">
+            <div className="experience-item-header">
+              <h3 className="experience-item-role">{exp.role}</h3>
+              <div className="experience-item-meta">
+                <span className="experience-item-company">{exp.company}</span>
+                <span className="experience-item-period">{exp.period}</span>
               </div>
-              <ul className="experience-item-achievements">
-                {exp.achievements.map((a, j) => (
-                  <li key={j}>{a}</li>
-                ))}
-              </ul>
             </div>
-          ))}
+            <ul className="experience-item-achievements">
+              {exp.achievements.map((a, j) => (
+                <li key={j}>{a}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* RIGHT: 3 blank image placeholder cards (stacked) */}
+          <div className="image-cards-panel">
+            <ImageCards />
+          </div>
+
         </div>
-      </div>
+      ))}
     </section>
   );
 };
@@ -235,14 +225,17 @@ const Portfolio = () => {
     { name: "FreeFire India Today League", year: "2019", viewers: "300K+" },
     { name: "GGNation Challenger Series", year: "2022", viewers: "150K+" },
     { name: "Esportz Premier Series", year: "2023", viewers: "180K+" },
-    { name: "Hitwicket World Championship", year: "2023", viewers: "120K+" }
+    { name: "Hitwicket World Championship", year: "2023", viewers: "120K+" },
+    { name: "PUBG Mobile Campus Championship", year: "2019", viewers: "250K+" },
+    { name: "Acer PUBG PC Championship", year: "2019", viewers: "200K+" },
+    { name: "PUBG Mobile All Stars", year: "2019", viewers: "300K+" },
+    { name: "Mumbai Esports Championship", year: "2019-20", viewers: "100K+" }
   ];
-
   return (
     <section id="portfolio">
       <div className="section-header">
         <h2 className="section-title">Event Portfolio</h2>
-        <p className="section-subtitle">29 Major Event IPs Powered Globally</p>
+        <p className="section-subtitle">29 Major Event IPs Powered</p>
       </div>
       <div className="events-grid">
         {events.map((event, index) => (
