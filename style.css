@@ -1724,3 +1724,285 @@ footer {
   33% { transform: translate(30px, -30px) scale(1.1); }
   66% { transform: translate(-20px, 20px) scale(0.9); }
 }
+
+/* =============================================
+   DISPLAY CARDS - Experience Section
+   Adapted from Codehagen/PrismUI display-cards
+   21st.dev/community/components/Codehagen/display-cards
+   ============================================= */
+
+/* Outer wrapper for the experience section */
+.experience-section {
+  padding: var(--space-96) var(--space-32);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Section header matches site style */
+.experience-section .section-header {
+  text-align: center;
+  margin-bottom: var(--space-80);
+}
+
+/* The grid that stacks the cards */
+.display-cards-grid {
+  display: grid;
+  grid-template-areas: 'stack';
+  place-items: center;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding-bottom: 180px;
+}
+
+/* Base display card */
+.display-card {
+  grid-area: stack;
+  position: relative;
+  width: 100%;
+  min-height: 176px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  border: 2px solid rgba(119, 124, 124, 0.25);
+  background: rgba(30, 41, 59, 0.72);
+  backdrop-filter: blur(8px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  user-select: none;
+}
+
+/* Grayscale overlay pseudo-element (mimics before:bg-blend-overlay) */
+.display-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.5);
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grayscale + overlay on non-hovered cards */
+.display-card.stacked {
+  filter: grayscale(100%);
+}
+
+/* Remove overlay on hover */
+.display-card:hover::before {
+  opacity: 0;
+}
+
+/* Remove grayscale on hover */
+.display-card:hover.stacked {
+  filter: grayscale(0%);
+}
+
+/* Card 1 (back) - bottom of stack */
+.display-card.card-1 {
+  transform: translateX(0px) translateY(0px);
+  z-index: 1;
+}
+.display-card.card-1:hover {
+  transform: translateX(0px) translateY(-40px);
+}
+
+/* Card 2 (middle) */
+.display-card.card-2 {
+  transform: translateX(48px) translateY(40px);
+  z-index: 2;
+}
+.display-card.card-2:hover {
+  transform: translateX(48px) translateY(4px);
+}
+
+/* Card 3 (front) - top of stack */
+.display-card.card-3 {
+  transform: translateX(96px) translateY(80px);
+  z-index: 3;
+}
+.display-card.card-3:hover {
+  transform: translateX(96px) translateY(40px);
+}
+
+/* Card inner content sits above the pseudo overlay */
+.display-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+/* Card header row: icon badge + title */
+.display-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icon badge */
+.display-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Company / role line */
+.display-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Role subtitle */
+.display-card-role {
+  font-size: 13px;
+  font-weight: 500;
+  color: #E2E8F0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Key achievement line */
+.display-card-description {
+  font-size: 12px;
+  color: rgba(226, 232, 240, 0.75);
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Period badge at bottom */
+.display-card-date {
+  font-size: 11px;
+  color: var(--neon-pink);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Mobile: reduce stacking offsets */
+@media (max-width: 768px) {
+  .display-cards-grid {
+    max-width: 100%;
+    padding-bottom: 220px;
+  }
+  .display-card.card-2 {
+    transform: translateX(24px) translateY(40px);
+  }
+  .display-card.card-2:hover {
+    transform: translateX(24px) translateY(4px);
+  }
+  .display-card.card-3 {
+    transform: translateX(48px) translateY(80px);
+  }
+  .display-card.card-3:hover {
+    transform: translateX(48px) translateY(40px);
+  }
+}
+
+/* Experience layout: cards on left, full list on right */
+.experience-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-64);
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+  }
+  .display-cards-grid {
+    margin: 0 auto;
+  }
+}
+
+/* Right panel: full experience list */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.experience-item {
+  padding: var(--space-24);
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: var(--radius-xl);
+  transition: all var(--duration-normal);
+}
+
+.experience-item:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+  transform: translateX(4px);
+}
+
+.experience-item-header {
+  margin-bottom: var(--space-12);
+}
+
+.experience-item-role {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--neon-cyan);
+  margin-bottom: var(--space-4);
+}
+
+.experience-item-meta {
+  display: flex;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.experience-item-company {
+  font-size: var(--font-size-md);
+  color: #E2E8F0;
+  font-weight: var(--font-weight-medium);
+}
+
+.experience-item-period {
+  font-size: var(--font-size-sm);
+  color: var(--neon-pink);
+  font-weight: var(--font-weight-medium);
+}
+
+.experience-item-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.experience-item-achievements li {
+  position: relative;
+  padding-left: var(--space-20);
+  font-size: var(--font-size-sm);
+  color: rgba(226, 232, 240, 0.8);
+  line-height: 1.5;
+}
+
+.experience-item-achievements li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--neon-cyan);
+}
