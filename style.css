@@ -2006,3 +2006,160 @@ footer {
   left: 0;
   color: var(--neon-cyan);
 }
+
+/* =============================================
+   IMAGE PLACEHOLDER CARDS - Per Experience
+   3 blank stacking cards on the RIGHT side
+   ============================================= */
+
+/* Reverse the 2-column layout: experience list LEFT, image cards RIGHT */
+.experience-layout {
+  grid-template-columns: 1fr 1fr;
+  direction: ltr;
+}
+
+/* The image cards column sits on the right */
+.image-cards-panel {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+/* Stack wrapper for image cards */
+.image-cards-grid {
+  display: grid;
+  grid-template-areas: 'stack';
+  place-items: start;
+  width: 100%;
+  max-width: 420px;
+  padding-bottom: 160px;
+}
+
+/* Base image placeholder card */
+.image-card {
+  grid-area: stack;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  border: 2px dashed rgba(6, 182, 212, 0.3);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Grayscale overlay on stacked/non-hovered cards */
+.image-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  transition: opacity 0.7s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.image-card.img-stacked {
+  filter: grayscale(80%);
+}
+
+.image-card:hover::before {
+  opacity: 0;
+}
+
+.image-card:hover.img-stacked {
+  filter: grayscale(0%);
+}
+
+/* Inner placeholder content (icon + label) */
+.image-card-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.image-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px dashed rgba(6, 182, 212, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(6, 182, 212, 0.4);
+  font-size: 22px;
+}
+
+.image-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(6, 182, 212, 0.35);
+}
+
+/* Card 1 (back) */
+.image-card.img-card-1 {
+  transform: translateX(0px) translateY(0px);
+  z-index: 1;
+}
+.image-card.img-card-1:hover {
+  transform: translateX(0px) translateY(-36px);
+}
+
+/* Card 2 (middle) */
+.image-card.img-card-2 {
+  transform: translateX(40px) translateY(36px);
+  z-index: 2;
+}
+.image-card.img-card-2:hover {
+  transform: translateX(40px) translateY(4px);
+}
+
+/* Card 3 (front) */
+.image-card.img-card-3 {
+  transform: translateX(80px) translateY(72px);
+  z-index: 3;
+}
+.image-card.img-card-3:hover {
+  transform: translateX(80px) translateY(36px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .image-cards-grid {
+    max-width: 100%;
+    padding-bottom: 200px;
+  }
+  .image-card.img-card-2 {
+    transform: translateX(20px) translateY(36px);
+  }
+  .image-card.img-card-2:hover {
+    transform: translateX(20px) translateY(4px);
+  }
+  .image-card.img-card-3 {
+    transform: translateX(40px) translateY(72px);
+  }
+  .image-card.img-card-3:hover {
+    transform: translateX(40px) translateY(36px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .image-cards-panel {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+  .image-cards-grid {
+    margin: 0 auto;
+  }
+}
